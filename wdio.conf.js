@@ -156,8 +156,17 @@ exports.config = {
      * @param {Object} config wdio configuration object
      * @param {Array.<Object>} capabilities list of capabilities details
      */
-    // onPrepare: function (config, capabilities) {
-    // },
+    onPrepare: function (config, capabilities) {
+         // Load chai assertions
+        const chai = require('chai');
+        const chaiAsPromised = require('chai-as-promised');
+
+        // Load chai-as-promised support
+        chai.use(chaiAsPromised);
+
+        // Initialise should API (attaches as a property on Object)
+        chai.should();
+    },
     /**
      * Gets executed before a worker process is spawned and can be used to initialise specific service
      * for that worker as well as modify runtime environments in an async fashion.

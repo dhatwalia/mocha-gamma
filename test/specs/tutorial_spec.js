@@ -13,5 +13,16 @@ describe('The tutorial', () => {
         backpack.click();
 
         $('#newsletter_yes').click();
+
+        assertPromiseEquals($('#name').getValue(), 'Prajwal D');
+        assertPromiseEquals($('#state').getValue(), 'TX');
+        assertPromiseEquals(backpack.isSelected(), true);
+        assertPromiseEquals($('#newsletter_yes').isSelected(), true);
     });
 });
+
+function assertPromiseEquals(promise, value) {
+    promise.then(function(result) {
+        result.should.equal(value);
+    });
+}
